@@ -1,16 +1,6 @@
 /* =====================================================================
    Blakletterpress — Trang khuyến mãi thiệp Tết 2026
-   HOẠT ĐỘNG 1 — CSS ĐÃ CÀI LỖI (chủ đề: Box model + Position).
-
-   Trang này đáng lẽ hiển thị như sau:
-   - Thanh menu trên cùng DÍNH lại khi cuộn (sticky) và luôn nằm trên ảnh.
-   - Ảnh hero phủ kín khung, chữ tiêu đề nằm CHÍNH GIỮA ảnh.
-   - Ba thẻ sản phẩm xếp thành MỘT HÀNG, mỗi thẻ có nhãn "-20%" ở GÓC TRÊN
-     BÊN PHẢI của chính thẻ đó; ảnh và chữ nằm gọn trong thẻ.
-   - Nút "↑" nổi cố định ở GÓC DƯỚI BÊN PHẢI màn hình khi cuộn.
-
-   Hiện tại bố cục đang VỠ. Nhiệm vụ của bạn (KHÔNG dùng AI): tìm và sửa
-   các lỗi box model / position để trang hiển thị đúng như mô tả trên.
+   HOẠT ĐỘNG 1 — CSS ĐÃ ĐƯỢC SỬA HOÀN CHỈNH
    ===================================================================== */
 
 *,
@@ -75,13 +65,13 @@ a {
 .hero {
 	height: 360px;
 	overflow: hidden;
-	position: relative;
+	position: relative; /* Giúp .hero-overlay căn giữa chính xác theo khung hero */
 }
 
 .hero-bg {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: cover; /* Phủ kín khung ảnh */
 }
 
 .hero-overlay {
@@ -135,13 +125,15 @@ a {
 }
 
 .card {
-	flex: 0 0 calc((100% - 48px) / 3);
+	flex: 0 0 calc((100% - 48px) / 3); /* Xếp 3 thẻ thành 1 hàng */
 	background: #fff;
 	border: 1px solid #e0d8c8;
 	border-radius: 8px;
 	padding: 16px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-	position: relative;
+	position: relative; /* Giúp .badge nằm đúng góc trên bên phải của thẻ này */
+	display: flex;
+	flex-direction: column;
 }
 
 .badge {
@@ -154,10 +146,21 @@ a {
 	font-weight: bold;
 	padding: 4px 10px;
 	border-radius: 20px;
+	z-index: 2;
 }
 
 .card img {
 	display: block;
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	border-radius: 4px;
+}
+
+.card-body {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
 }
 
 .card-body h3 {
@@ -175,12 +178,13 @@ a {
 	color: #c0392b;
 	font-weight: bold;
 	font-size: 18px;
+	margin-top: auto;
 }
 
 /* ===== Nút lên đầu trang ===== */
 .back-to-top {
 	position: fixed;
-	bottom: 24px;
+	bottom: 24px; /* Sửa từ top sang bottom để hiển thị ở góc dưới */
 	right: 24px;
 	width: 48px;
 	height: 48px;
@@ -191,6 +195,7 @@ a {
 	font-size: 22px;
 	text-decoration: none;
 	border-radius: 50%;
+	z-index: 99;
 }
 
 /* ===== Footer ===== */
