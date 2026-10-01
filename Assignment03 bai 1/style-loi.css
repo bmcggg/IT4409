@@ -64,10 +64,13 @@ a {
 
 /* ===== Hero ===== */
 .hero {
-	width: 100%;
-	height: 360px;
-	overflow: hidden;
-	position: relative; /* Giúp .hero-overlay căn giữa chính xác theo khung hero */
+	width: 100vw; /* Chiều rộng tràn toàn bộ màn hình */
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	height: 380px; /* Chiều cao cố định của banner */
 	overflow: hidden;
 }
 
