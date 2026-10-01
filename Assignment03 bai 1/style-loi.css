@@ -64,15 +64,18 @@ a {
 
 /* ===== Hero ===== */
 .hero {
+	width: 100%;
 	height: 360px;
 	overflow: hidden;
 	position: relative; /* Giúp .hero-overlay căn giữa chính xác theo khung hero */
+	overflow: hidden;
 }
 
 .hero-bg {
 	width: 100%;
 	height: 100%;
 	object-fit: cover; /* Phủ kín khung ảnh */
+	object-position: center;
 	display: block;
 }
 
