@@ -51,8 +51,7 @@ class GioHang {
 	// 3. Tổng tiền cả giỏ.
 	tongTien() {
 		return this.dsDong.reduce(
-			(tong, dong) => {tong + dong.gia*dong.soLuong,
-		0});
+			(tong, dong) => {tong + dong.gia*dong.soLuong,0});
 	}
 	// 4. Object thống kê
 	thongKeTheoLoai(){
