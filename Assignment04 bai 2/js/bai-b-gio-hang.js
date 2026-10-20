@@ -38,7 +38,6 @@ class GioHang {
 
 	// 2. Xoá dòng có id tương ứng; trả về true nếu có xoá, false nếu không tìm thấy.
 	xoa(id) {
-<<<<<<< HEAD
 		const id = this.dsDong.findIndex(item => item.id === id);
 		
 		if(id === -1)
@@ -46,26 +45,14 @@ class GioHang {
 		
 		this.dsDong.splice(id,1);
 		return true;
-=======
-		// TODO
->>>>>>> cffcebe19652ccf707d647c437d7fd959c2e0537
 	}
 
 	// 3. Tổng tiền cả giỏ.
 	tongTien() {
-<<<<<<< HEAD
 		return this.dsDong.reduce(
-			(tong, dong) => tong + dong.gia*dong.soLuong,
-			0
-		);
-=======
-		// TODO
->>>>>>> cffcebe19652ccf707d647c437d7fd959c2e0537
-	}
-
-	// 4. Object thống kê: { "<loai>": tổng tiền của loại đó, ... }.
-	thongKeTheoLoai() {
-<<<<<<< HEAD
+			(tong, dong) => {tong + dong.gia*dong.soLuong,
+		0});
+		
 		const res = {};
 
 		this.dsDong.forEach(dong => {
@@ -74,14 +61,10 @@ class GioHang {
 			res[res.loai] += dong.gia * dong.soLuong;
 		});
 		return res;
-=======
-		// TODO
->>>>>>> cffcebe19652ccf707d647c437d7fd959c2e0537
 	}
 
 	// 5. Dòng có thành tiền lớn nhất (bản sao, có thêm thanhTien); null nếu giỏ rỗng.
 	dongDatNhat() {
-<<<<<<< HEAD
 		if(this.dsDong.length === 0)
 			return null;
 		const max = this.dsDong.reduce((max,dong) => {
@@ -91,36 +74,24 @@ class GioHang {
 			...max,
 			thanhTien: max.gia * max.soLuong
 		};
-=======
-		// TODO
->>>>>>> cffcebe19652ccf707d647c437d7fd959c2e0537
 	}
 
 	// 6. Mảng BẢN SAO các dòng, mỗi dòng có thêm thuộc tính thanhTien.
 	layDanhSach() {
-<<<<<<< HEAD
 		return this.dsDong.map(dong => ({
 			...dong,
 			thanhTien: dong.gia * dong.soLuong
 		}));
-=======
-		// TODO
->>>>>>> cffcebe19652ccf707d647c437d7fd959c2e0537
 	}
 
 	// 7. Chuỗi JSON của mảng các dòng.
 	xuatJSON() {
-<<<<<<< HEAD
 		return JSON.stringify(this.dsDong);
-=======
-		// TODO
->>>>>>> cffcebe19652ccf707d647c437d7fd959c2e0537
 	}
 }
 
 // 8. Tạo lại một GioHang từ chuỗi JSON do xuatJSON() sinh ra.
 function napGioHang(chuoiJSON) {
-<<<<<<< HEAD
 	const arr = xuatJSON();
 	const gio = new GioHang();
 	
@@ -133,9 +104,6 @@ function napGioHang(chuoiJSON) {
 	}));
 
 	return gio;
-=======
-	// TODO
->>>>>>> cffcebe19652ccf707d647c437d7fd959c2e0537
 }
 
 // ---------- CHẠY THỬ (không sửa) ----------
