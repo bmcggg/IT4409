@@ -30,7 +30,7 @@ class GioHang {
 				id: sanPham.id,
 				ten: sanPham.ten,
 				loai: sanPham.loai,
-				gia: sanPham,gia,
+				gia: sanPham.gia,
 				soLuong: soLuong
 			});
 		}
@@ -39,19 +39,21 @@ class GioHang {
 
 	// 2. Xoá dòng có id tương ứng; trả về true nếu có xoá, false nếu không tìm thấy.
 	xoa(id) {
-		const id = this.dsDong.findIndex(item => item.id === id);
+		const pos = this.dsDong.findIndex(item => item.id === id);
 		
-		if(id === -1)
+		if(pos === -1)
 			return false;
 		
-		this.dsDong.splice(id,1);
+		this.dsDong.splice(pos,1);
 		return true;
 	}
 
 	// 3. Tổng tiền cả giỏ.
 	tongTien() {
 		return this.dsDong.reduce(
-			(tong, dong) => {tong + dong.gia*dong.soLuong,0});
+			(tong, dong) => tong + dong.gia*dong.soLuong,
+			0
+		);
 	}
 	// 4. Object thống kê
 	thongKeTheoLoai(){
@@ -60,7 +62,7 @@ class GioHang {
 		this.dsDong.forEach(dong => {
 			if(res[dong.loai] === undefined)
 				res[dong.loai] = 0;
-			res[res.loai] += dong.gia * dong.soLuong;
+			res[dong.loai] += dong.gia * dong.soLuong;
 		});
 		return res;
 	}
@@ -70,7 +72,7 @@ class GioHang {
 		if(this.dsDong.length === 0)
 			return null;
 		const max = this.dsDong.reduce((max,dong) => {
-			return dong.gia * dong.soLuong > max? dong.gia * dong.soLuong : max;
+			return dong.gia * dong.soLuong > max.gia * max.soLuong ? dong : max;
 		});
 		return {
 			...max,
@@ -89,7 +91,7 @@ class GioHang {
 	// 7. Chuỗi JSON của mảng các dòng.
 	xuatJSON() {
 		const dsDuLieu = this.dsDong.map(({ id, ten, loai, gia, soLuong }) => ({ id, ten, loai, gia, soLuong }));
-		return JSON.stringify(this.dsDong);
+		return JSON.stringify(this.dsDuLieu);
 	}
 }
 
