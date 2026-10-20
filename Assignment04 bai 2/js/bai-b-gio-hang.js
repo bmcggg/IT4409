@@ -91,7 +91,7 @@ class GioHang {
 	// 7. Chuỗi JSON của mảng các dòng.
 	xuatJSON() {
 		const dsDuLieu = this.dsDong.map(({ id, ten, loai, gia, soLuong }) => ({ id, ten, loai, gia, soLuong }));
-		return JSON.stringify(this.dsDuLieu);
+		return JSON.stringify(dsDuLieu);
 	}
 }
 
