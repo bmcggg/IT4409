@@ -19,7 +19,7 @@ class GioHang {
 
 	// 1. Thêm sản phẩm; trả về true nếu thêm được, false nếu soLuong không hợp lệ.
 	them(sanPham, soLuong) {
-		if(!Number.isInteger(soLuong)||soLuong <= 0)
+		if(typeof soLuong !== "number"||!Number.isInteger(soLuong)||soLuong <= 0)
 			return false;
 		const dong = this.dsDong.find(item => item.id === sanPham.id);
 
@@ -34,6 +34,7 @@ class GioHang {
 				soLuong: soLuong
 			});
 		}
+		return true;
 	}
 
 	// 2. Xoá dòng có id tương ứng; trả về true nếu có xoá, false nếu không tìm thấy.
@@ -52,7 +53,9 @@ class GioHang {
 		return this.dsDong.reduce(
 			(tong, dong) => {tong + dong.gia*dong.soLuong,
 		0});
-		
+	}
+	// 4. Object thống kê
+	thongKeTheoLoai(){
 		const res = {};
 
 		this.dsDong.forEach(dong => {
@@ -86,13 +89,14 @@ class GioHang {
 
 	// 7. Chuỗi JSON của mảng các dòng.
 	xuatJSON() {
+		const dsDuLieu = this.dsDong.map(({ id, ten, loai, gia, soLuong }) => ({ id, ten, loai, gia, soLuong }));
 		return JSON.stringify(this.dsDong);
 	}
 }
 
 // 8. Tạo lại một GioHang từ chuỗi JSON do xuatJSON() sinh ra.
 function napGioHang(chuoiJSON) {
-	const arr = xuatJSON();
+	const arr = JSON.parse(chuoiJSON);
 	const gio = new GioHang();
 	
 	gio.dsDong = arr.map(dong => ({
